@@ -36,6 +36,24 @@ var sum = function(array) {
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+  // create sum var
+  var sum = 0;
+  // create inner function
+  function innerFunction(input) {
+  // base case: it's a primitive (not an array)
+    if (!Array.isArray(input)) {
+      return input;
+    } else {
+      var newSum = 0;
+      for (let i = 0; i < input.length; i++) {
+        newSum += innerFunction(input[i]);
+      }
+      return newSum;
+    }
+  }
+// invoke inner function
+  sum += innerFunction(array);
+  return sum;
 };
 
 // 4. Check if a number is even.
